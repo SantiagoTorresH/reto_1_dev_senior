@@ -5,7 +5,7 @@ import datetime
 listaDeExperimentos = [
     ["Esperimento 1", "16/11/2024", "Quimica",[5,2,3,56,7]],
 
-    
+    print("hola mundo")
 ]
 
 
