@@ -1,5 +1,7 @@
 import datetime
 
+# Lindsey's branch.
+
 '''Atributos de un experimento:nombre, fecha, tipo, resultados numericos'''
 
 listaDeExperimentos = [
