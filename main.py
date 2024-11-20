@@ -34,7 +34,7 @@ def addExperiment(listOfExperiments):
 def printExperiments(listOfExperiments):
     print("----------------------------------------------------")
     print("This is the list of experiments you have documented.")
-     
+    
     for i, thisExperiment in enumerate(listOfExperiments, start=1):
         print("----------------------------------------------------")   
         print(f"Experiment #{i}")
