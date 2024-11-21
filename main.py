@@ -11,15 +11,18 @@ experimentsList = [
 #listaDeExperimentos2 = []
 
 def append_experiments():
-    name = input("Vas a agregar un experimento \n ingrese el nombre del experimento:")
+    name = input("Vas a agregar un experimento \n ingrese el nombre del experimento: ")
     
-    date = input("Ingrese la fecha de ralizacion, (DD/MM/YYYY): ")
-    try:
-        datetime.datetime.strptime(date, "%d/%m/%Y") # si lo hace bien es un try, si no except
+    while True:
+        date = input("Ingrese la fecha de ralizacion, (DD/MM/YYYY): ")
+        try:
+            datetime.datetime.strptime(date, "%d/%m/%Y") # si lo hace bien es un try, si no except
         #asifna lo de str a fechalimite 
-    except ValueError:
-        print("Fecha no valida.")
-        return # vuelve y lo retorna para que ingrese 
+            break
+        
+        except ValueError:
+            print("Fecha no valida.")
+        # vuelve y lo retorna para que ingrese 
     
     category = input('Ingrese la categoria, puede ser "Quimica", "fisica" o "Biologia": ').capitalize()
     
@@ -27,15 +30,20 @@ def append_experiments():
     while category not in ["Quimica", "Fisica", "Biologia"]:
         print("Categoría no válida. Por favor ingrese una de las siguientes: 'Quimica', 'Fisica' o 'Biologia'.")
         category = input('Ingrese la categoría, puede ser "Quimica", "Fisica" o "Biologia": ').capitalize()
-
-    results = input("Ingrese los resultados obtenidos separados por comas, ej(4, 5.1, 7.4) : ")  # 5, 4,3 
-    try:
+        
+    while True:
+        results = input("Ingrese los resultados obtenidos separados por comas, ej(4, 5.1, 7.4) : ")  # 5, 4,3 
+        try:
         #resultados = [int(x) for x in resultados.split(",")]    # Convierte la entrada a una lista de enteros
-        results = list(map(float, results.split(",")))     # separa con comas los numeros que ingreso, se le pasa que es float, el map sefara lo que aparentemente era flotante y lo convierte en una lista separadas por comas. 
+            results = list(map(float, results.split(",")))     # separa con comas los numeros que ingreso, se le pasa que es float, el map sefara lo que aparentemente era flotante y lo convierte en una lista separadas por comas. 
     # antes del map todo era un solo numero, el map los coge y separa cada numero y los agrega a la lista. 
-    except ValueError:
-        print(" no valida.")    
-        return
+            if len(results) >=3:
+                break
+            else:
+                print("Debe ingresar al menos 3 resltados.")
+        except ValueError:
+            print(" no valida.")    
+        
     
     experimentsList.append([name,date,category, results])
     print("Experimento agregado exitosamente.")
@@ -49,7 +57,7 @@ def delete_experiments():
         print("No hay experimentos para eliminar.")
         return
     
-    nameToDelete = input("Ingrese el nombre del experimento que desea eliminar:")
+    nameToDelete = input("Ingrese el nombre del experimento que desea eliminar: ")
     #Busco en la lista ese nombre
     for exp in experimentsList:
         if exp[0].lower() == nameToDelete.lower():
@@ -174,9 +182,52 @@ def compare_Experiments():
     if best_min_exp:
         print(f"El experimento con el menor valor mínimo es '{best_min_exp}' con un valor mínimo de {best_min}")
 
-def generar_informe():
+def generate_report():
     """Generar un informe resumen de los expremintos y sus estadisticas. dificultad: 3. requiere el uso de funciones visualizar_experimentos y calcular_estadisticas"""
+    if not experimentsList:
+        print("No hay experimentos para generar el informe.")
+        return
     
+    # Creamos el nombre del archivo con la fecha actual
+    report_name = f"Informe_Experimentos_{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.txt"
+    
+    with open(report_name, 'w') as file:
+        file.write("Informe de Experimentos\n")
+        file.write("="*50 + "\n") # linea de separacion visual
+        
+        # Recorremos la lista de experimentos
+        for exp in experimentsList:
+            name, date, category, results = exp
+            file.write(f"\nNombre del Experimento: {name}\n")
+            file.write(f"Fecha: {date}\n")
+            file.write(f"Categoría: {category}\n")
+            file.write(f"Resultados: {results}\n")
+            
+            # Calcular las estadísticas básicas
+            if results:
+                try:
+                    average = statistics.mean(results)
+                    max_value = max(results)
+                    min_value = min(results)
+                    file.write(f"Promedio: {average:.2f}\n") # :.2f nos muesra el numero con 2 d3cimales.
+                    file.write(f"Máximo: {max_value}\n")
+                    file.write(f"Mínimo: {min_value}\n")
+                except statistics.StatisticsError:
+                    file.write("No se pueden calcular estadísticas (sin resultados).\n")
+            else:
+                file.write("No hay resultados para calcular estadísticas.\n")
+        
+        # Generamos una conclusión simple basada en los experimentos
+        file.write("\nConclusiones:\n")
+        file.write("="*50 + "\n")
+        
+        if experimentsList:
+            file.write("Se han realizado experimentos en varias categorías como Química, Física y Biología.\n")
+            file.write("A continuación se presenta un resumen de las estadísticas obtenidas.\n")
+        else:
+            file.write("No se han realizado experimentos aún.\n")
+    
+    print(f"Informe generado con éxito: {report_name}")
     pass
 
 def mostrar_menu():
@@ -213,7 +264,7 @@ def main():
         elif opcion == "5":
             compare_Experiments()
         elif opcion == "6":
-            generar_informe()
+            generate_report()
         elif opcion == "7":
             print("Saliendo del programa")   
             break
