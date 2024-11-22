@@ -197,53 +197,66 @@ def compareExperiments(listOfExperiments):
 
     # This loop will be used so that the user can input as many experiments as they need to compare.
     while True:
+        experiment = input("\nType the number of the experiment to compare, \nif you need to view the list of experiments, type 0, \nif you want to stop selecting experiments, type 'stop': ")
+        # First we need to validate if the number is lower that the number of registered experiments. 
         try:
-            experiment = input("\nType the number of the experiment to compare, \nif you need to view the list of experiments, type 0, \nif you want to stop selecting experiments, type 'stop': ")
-            # First we need to validate if the number is lower that the number of registered experiments. 
-            try:
-                if 1 <= int(experiment) <= len(listOfExperiments):
-                    # Add this experiment to the list of experiments to compare.
-                    listToCompare.append(experiment)
-                    continue
-                elif int(experiment) == 0:
-                    displayExperimentsName(listOfExperiments)
-                    continue
-            except:
-                # Now, we will verified if the user selected at lest 2 experiments, if they didn't,
-                # they will be asked for more input
-                if len(set(listToCompare))<=1:
-                    if experiment.lower() == "stop":
-                        print("\nYou can't stop. Please enter another experiment. \nthere is only one experiment in the list.")
-                        continue
-                if experiment.lower() == "stop":
-                    break            
-             
+            if 1 <= int(experiment) <= len(listOfExperiments):
+                # Add this experiment to the list of experiments to compare.
+                listToCompare.append(int(experiment))
+                print(f"\nExperiments to compare: {set(listToCompare)}")
+                continue
+            elif int(experiment) == 0:
+                displayExperimentsName(listOfExperiments)
+                continue
+            else:
+                print("\n*** Attention ***")
+                print("\nInvalid input, the experiment doesn't exist.")
         except:
-            print("\nInvalid input, it must be an integer or 0.")
+            # We will land here if the text can't be converted to a number
+            # There are two options:
+            # 1. The text is "stop" (The code should verify if there is enough data)
+            # 2. The text is different than "stop" (The code should return a warning)
 
+            # Condition 1. 
+            if experiment.lower() == "stop":
+                # Verify if there is enough data.
+                if len(set(listToCompare))<=1:
+                    print("\n*** Attention ***")
+                    print("\nYou can't stop. Please enter another experiment. \nThere is only one experiment in the list.")
+                    continue
+                else:
+                    break
+            # Condition 2. 
+            else:
+                print("\n*** Attention ***")
+                print("\nInvalid input, it must be an integer or 0.")
+                continue
+    
+    # We need to make sure the elements are unique
+    listToCompare = sorted(set(listToCompare))
     listOfMeans = []
     listOfMins = []
     listOfMaxs = []
     for experiment in listToCompare:
-        listOfMeans.append(listOfExperiments[experiment].results)
-        listOfMins.append(listOfExperiments[experiment].results)
-        listOfMaxs.append(listOfExperiments[experiment].results)
+        listOfMeans.append(statistics.mean(listOfExperiments[experiment-1].results))
+        listOfMins.append(min(listOfExperiments[experiment-1].results))
+        listOfMaxs.append(max(listOfExperiments[experiment-1].results))
 
     print("--------------------")
     print("Comparision of mean:")
     print("--------------------")
-    print(f"Highest average: Experiment #{listToCompare.index(max(listOfMeans)+1)} with a value of {max(listOfMeans)}")
-    print(f"Lowest average: Experiment #{listToCompare.index(min(listOfMeans)+1)} with the value of {min(listOfMeans)}")
+    print(f"Highest average: Experiment #{listOfMeans.index(max(listOfMeans))+1} with a value of {max(listOfMeans)}")
+    print(f"Lowest average: Experiment #{listOfMeans.index(min(listOfMeans))+1} with the value of {min(listOfMeans)}")
     print("----------------------------")
-    print("Comparision of minium value:")
+    print("Comparision of minimum value:")
     print("----------------------------")
-    print(f"Highest Min Value: Experiment #{listToCompare.index(max(listOfMins)+1)} with a value of {max(listOfMins)}")
-    print(f"Lowest Min Value: Experiment #{listToCompare.index(min(listOfMins)+1)} with the value of {min(listOfMins)}")
+    print(f"Highest Min Value: Experiment #{listOfMins.index(max(listOfMins))+1} with a value of {max(listOfMins)}")
+    print(f"Lowest Min Value: Experiment #{listOfMins.index(min(listOfMins))+1} with the value of {min(listOfMins)}")
     print("-----------------------------")
     print("Comparision of maximum value:")
     print("-----------------------------")
-    print(f"Highest Max Value: Experiment #{listToCompare.index(max(listOfMaxs)+1)} with a value of {max(listOfMaxs)}")
-    print(f"Lowest Max Value: Experiment #{listToCompare.index(min(listOfMaxs)+1)} with the value of {min(listOfMaxs)}")
+    print(f"Highest Max Value: Experiment #{listOfMaxs.index(max(listOfMaxs))+1} with a value of {max(listOfMaxs)}")
+    print(f"Lowest Max Value: Experiment #{listOfMaxs.index(min(listOfMaxs))+1} with the value of {min(listOfMaxs)}")
     input("\nPress Enter to continue...")
 
 def generateReport(listOfExperiments):
@@ -253,50 +266,51 @@ def generateReport(listOfExperiments):
         return
     
     print("--------------------")
-    print("Generating report...")
-    print("--------------------")
+    print("\nGenerating report...")
+    print("\n--------------------")
 
     #Open a file to write to. 
     with open('report_of_experiments.txt', 'w') as myFile:
-        myFile.write("-------------------")
-        myFile.write("LIST OF EXPERIMENTS")
-        myFile.write("-------------------")
+        myFile.write("\n\n-------------------")
+        myFile.write("\nLIST OF EXPERIMENTS")
+        myFile.write("\n-------------------")
         for i, thisExperiment in enumerate(listOfExperiments, start=1):
-            myFile.write(f"\n----- Experiment #: {i} -----")
-            myFile.write(f"Name: {thisExperiment.name}")
-            myFile.write(f"Date: {thisExperiment.date}")
-            myFile.write(f"Category: {thisExperiment.category}")
-            myFile.write(f"Results: {thisExperiment.results}")
-            myFile.write(f"The average is: {statistics.mean(thisExperiment.results)}")
-            myFile.write(f"The minimun value is: {min(thisExperiment.results)}")
-            myFile.write(f"The maximum value is: {max(thisExperiment.results)}")
+            myFile.write(f"\n\n----- Experiment #: {i} -----")
+            myFile.write(f"\nName: {thisExperiment.name}")
+            myFile.write(f"\nDate: {thisExperiment.date}")
+            myFile.write(f"\nCategory: {thisExperiment.category}")
+            myFile.write(f"\nResults: {thisExperiment.results}")
+            myFile.write(f"\nThe average is: {statistics.mean(thisExperiment.results)}")
+            myFile.write(f"\nThe minimun value is: {min(thisExperiment.results)}")
+            myFile.write(f"\nThe maximum value is: {max(thisExperiment.results)}")
+        myFile.write("\n\n-------------------------------")
+        myFile.write("\nCOMPARISION BETWEEN EXPERIMENTS")
         myFile.write("\n-------------------------------")
-        myFile.write("COMPARISION BETWEEN EXPERIMENTS")
-        myFile.write("-------------------------------")
 
         listOfMeans = []
         listOfMins = []
         listOfMaxs = []
         for thisExperiment in listOfExperiments:
-            listOfMeans.append(thisExperiment.results)
-            listOfMins.append(thisExperiment.results)
-            listOfMaxs.append(thisExperiment.results)
+            listOfMeans.append(statistics.mean(thisExperiment.results))
+            listOfMins.append(min(thisExperiment.results))
+            listOfMaxs.append(max(thisExperiment.results))
+        
 
+        myFile.write("\n\n--------------------")
+        myFile.write("\nComparision of mean:")
         myFile.write("\n--------------------")
-        myFile.write("Comparision of mean:")
-        myFile.write("--------------------")
-        myFile.write(f"Highest average: Experiment #{listOfExperiments.index(max(listOfMeans))+1} with a value of {max(listOfMeans)}")
-        myFile.write(f"Lowest average: Experiment #{listOfExperiments.index(min(listOfMeans))+1} with the value of {min(listOfMeans)}")
-        myFile.write("----------------------------")
-        myFile.write("Comparision of minium value:")
-        myFile.write("----------------------------")
-        myFile.write(f"Highest Min Value: Experiment #{listOfExperiments.index(max(listOfMins))+1} with a value of {max(listOfMins)}")
-        myFile.write(f"Lowest Min Value: Experiment #{listOfExperiments.index(min(listOfMins))+1} with the value of {min(listOfMins)}")
-        myFile.write("-----------------------------")
-        myFile.write("Comparision of maximum value:")
-        myFile.write("-----------------------------")
-        myFile.write(f"Highest Max Value: Experiment #{listOfExperiments.index(max(listOfMaxs))+1} with a value of {max(listOfMaxs)}")
-        myFile.write(f"Lowest Max Value: Experiment #{listOfExperiments.index(min(listOfMaxs))+1} with the value of {min(listOfMaxs)}")
+        myFile.write(f"\nHighest average: Experiment #{listOfMeans.index(max(listOfMeans))+1} with a value of {max(listOfMeans)}")
+        myFile.write(f"\nLowest average: Experiment #{listOfMeans.index(min(listOfMeans))+1} with the value of {min(listOfMeans)}")
+        myFile.write("\n----------------------------")
+        myFile.write("\nComparision of minium value:")
+        myFile.write("\n----------------------------")
+        myFile.write(f"\nHighest Min Value: Experiment #{listOfMins.index(max(listOfMins))+1} with a value of {max(listOfMins)}")
+        myFile.write(f"\nLowest Min Value: Experiment #{listOfMins.index(min(listOfMins))+1} with the value of {min(listOfMins)}")
+        myFile.write("\n-----------------------------")
+        myFile.write("\nComparision of maximum value:")
+        myFile.write("\n-----------------------------")
+        myFile.write(f"\nHighest Max Value: Experiment #{listOfMaxs.index(max(listOfMaxs))+1} with a value of {max(listOfMaxs)}")
+        myFile.write(f"\nLowest Max Value: Experiment #{listOfMaxs.index(min(listOfMaxs))+1} with the value of {min(listOfMaxs)}")
     
     print("Report successfully generated.")
     input("\nPress Enter to continue...")
