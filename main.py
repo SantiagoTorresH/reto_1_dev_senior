@@ -103,7 +103,7 @@ def calculate_Statictics():
                 max_value = max(results) # maximo
                 min_value = min(results) # minimo
                 
-                print(f"\n Estadisticas para el experimento '(name)': ")
+                print(f"\n Estadisticas para el experimento '{name}': ")
                 print(f"Promedio: {average:.2f} ")
                 print(f"Maximo: {max_value} ")
                 print(f"Minimo: {min_value} ")
@@ -253,6 +253,7 @@ def main():
     mostrar_menu()   
     while True: 
         opcion  = input("Seleccione una opcion: ")
+        mostrar_menu() 
         if opcion == "1":
             append_experiments()
         elif opcion == "2":
