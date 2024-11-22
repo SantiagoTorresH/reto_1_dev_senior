@@ -31,39 +31,46 @@ def addExperiment(listOfExperiments):
             break
         except ValueError:
             print("Invalid format, please try again.")
+            
+    category = input('Ingrese la categoria, puede ser "Quimica", "fisica" o "Biologia": ').capitalize()            
+            
+    # Asegurarse de que la categoría esté entre las opciones permitidas
+    while category not in ["Quimica", "Fisica", "Biologia"]:
+        print("Categoría no válida. Por favor ingrese una de las siguientes: 'Quimica', 'Fisica' o 'Biologia'.")
+        category = input('Ingrese la categoría, puede ser "Quimica", "Fisica" o "Biologia": ').capitalize()            
     
-    # String: User will not type it, it will be selected.
-    print("Select a number according to the category:")
-    print("1. Biology.")
-    print("2. Physics")
-    print("3. Chemistry")
-    # Verification required, to make sure the input is a valid integer
-    while True:
-        try:
-            categoryOpt = int(input("Type a number: ")) # Change it to restrict user's input
-            if categoryOpt == 1:
-                category = "Biology"
-                break
-            elif categoryOpt == 2:
-                category = "Physics"
-                break
-            elif categoryOpt == 3:
-                category = "Chemistry"
-                break
-            elif categoryOpt <=0:
-                print("Invalid input, please try again.")
-            else:
-                print("Input is a non-existent category, please try again")
-                continue
-        except:
-            print("Invalid input, please try again.")
+    # # String: User will not type it, it will be selected.
+    # print("Select a number according to the category:")
+    # print("1. Biology.")
+    # print("2. Physics")
+    # print("3. Chemistry")
+    # # Verification required, to make sure the input is a valid integer
+    # while True:
+    #     try:
+    #         categoryOpt = int(input("Type a number: ")) # Change it to restrict user's input
+    #         if categoryOpt == 1:
+    #             category = "Biology"
+    #             break
+    #         elif categoryOpt == 2:
+    #             category = "Physics"
+    #             break
+    #         elif categoryOpt == 3:
+    #             category = "Chemistry"
+    #             break
+    #         elif categoryOpt <=0:
+    #             print("Invalid input, please try again.")
+    #         else:
+    #             print("Input is a non-existent category, please try again")
+    #             continue
+    #     except:
+    #         print("Invalid input, please try again.")
 
     # Float: verification required to make sure the input is a number
     results = []
     while True:
         try:
-            numberOfResults = int(input("\nYou will be entering the results now. \nPlease enter the number of results (max 10): "))
-            if 0 <= numberOfResults <=10:
+            numberOfResults = int(input("\nYou will be entering the results now. \nPlease enter the number of results (max 10), ) (MIN 3): "))
+            if 2 <= numberOfResults <=10:
                 for i in range(numberOfResults):
                     while True:
                         try:
@@ -73,7 +80,7 @@ def addExperiment(listOfExperiments):
                             print("Error, the value is not a number, try again.")
                 break
             else:
-                print("\nInvalid, input should be a positive integer.")
+                print("\nInvalid, input should be a positive integer. DEBE SER MINIMO 3 RESULTADOS A 10 RSULTADOS")
                 continue
         except:
             print("\nInvalid, input should be a positive integer.")
