@@ -39,38 +39,10 @@ def addExperiment(listOfExperiments):
         print("Categoría no válida. Por favor ingrese una de las siguientes: 'Quimica', 'Fisica' o 'Biologia'.")
         category = input('Ingrese la categoría, puede ser "Quimica", "Fisica" o "Biologia": ').capitalize()            
     
-    # # String: User will not type it, it will be selected.
-    # print("Select a number according to the category:")
-    # print("1. Biology.")
-    # print("2. Physics")
-    # print("3. Chemistry")
-    # # Verification required, to make sure the input is a valid integer
-    # while True:
-    #     try:
-    #         categoryOpt = int(input("Type a number: ")) # Change it to restrict user's input
-    #         if categoryOpt == 1:
-    #             category = "Biology"
-    #             break
-    #         elif categoryOpt == 2:
-    #             category = "Physics"
-    #             break
-    #         elif categoryOpt == 3:
-    #             category = "Chemistry"
-    #             break
-    #         elif categoryOpt <=0:
-    #             print("Invalid input, please try again.")
-    #         else:
-    #             print("Input is a non-existent category, please try again")
-    #             continue
-    #     except:
-    #         print("Invalid input, please try again.")
-
-    # Float: verification required to make sure the input is a number
-    results = []
     while True:
         try:
             numberOfResults = int(input("\nYou will be entering the results now. \nPlease enter the number of results (max 10), ) (MIN 3): "))
-            if 2 <= numberOfResults <=10:
+            if 3 <= numberOfResults <=10:
                 for i in range(numberOfResults):
                     while True:
                         try:
@@ -332,21 +304,21 @@ def main():
 
     while True:
         userMenu()
-        option = int(input("Select an option: "))
+        option = input("Select an option: ")
 
-        if option == 1:
+        if option == "1":
             addExperiment(listOfExperiments)
-        elif option == 2:
+        elif option == "2":
             printExperiments(listOfExperiments)
-        elif option == 3:
+        elif option == "3":
             removeExperiment(listOfExperiments)
-        elif option == 4:
+        elif option == "4":
             calculateStatistics(listOfExperiments)
-        elif option == 5:
+        elif option == "5":
             compareExperiments(listOfExperiments)
-        elif option == 6:
+        elif option == "6":
             generateReport(listOfExperiments)
-        elif option == 7:
+        elif option == "7":
             break
         else:
             print("Invalid option")
