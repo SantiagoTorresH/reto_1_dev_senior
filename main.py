@@ -13,7 +13,7 @@ class Experiment:
         self.date = date
         self.category = category
         self.results = results
-    
+        
 
 # This function will take the list of experiments called "listOfExperiments" as input
 def addExperiment(listOfExperiments):
@@ -217,7 +217,7 @@ def compareExperiments(listOfExperiments):
                         continue
                 if experiment.lower() == "stop":
                     break            
-             
+            
         except:
             print("\nInvalid input, it must be an integer or 0.")
 
