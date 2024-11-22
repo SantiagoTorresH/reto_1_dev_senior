@@ -39,6 +39,7 @@ def addExperiment(listOfExperiments):
         print("Categoría no válida. Por favor ingrese una de las siguientes: 'Quimica', 'Fisica' o 'Biologia'.")
         category = input('Ingrese la categoría, puede ser "Quimica", "Fisica" o "Biologia": ').capitalize()            
     
+    results= []
     while True:
         try:
             numberOfResults = int(input("\nYou will be entering the results now. \nPlease enter the number of results (max 10), ) (MIN 3): "))
