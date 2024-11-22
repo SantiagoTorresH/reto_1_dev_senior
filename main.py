@@ -28,42 +28,25 @@ def addExperiment(listOfExperiments):
         try:
             date_input = input("Date (dd/mm/yyyy): ")
             date = datetime.strptime(date_input, "%d/%m/%Y")
+            date = datetime.date(date)
             break
         except ValueError:
             print("Invalid format, please try again.")
     
-    # String: User will not type it, it will be selected.
-    print("Select a number according to the category:")
-    print("1. Biology.")
-    print("2. Physics")
-    print("3. Chemistry")
-    # Verification required, to make sure the input is a valid integer
-    while True:
-        try:
-            categoryOpt = int(input("Type a number: ")) # Change it to restrict user's input
-            if categoryOpt == 1:
-                category = "Biology"
-                break
-            elif categoryOpt == 2:
-                category = "Physics"
-                break
-            elif categoryOpt == 3:
-                category = "Chemistry"
-                break
-            elif categoryOpt <=0:
-                print("Invalid input, please try again.")
-            else:
-                print("Input is a non-existent category, please try again")
-                continue
-        except:
-            print("Invalid input, please try again.")
-
+    # String: It need verification, to confirm if it is within the predifined categories
+    category = input("\nSpecify the experiment's category. \nIt can be: Chemistry, Physics or Biology: ")
+    
+    while category.capitalize() not in ["Chemistry", "Physics", "Biology"]:
+        print("*** Attention ***")
+        print("Invalid category.")
+        category = input("\nSpecify the experiment's category. \nIt can be: Chemistry, Physics or Biology: ")
+    
     # Float: verification required to make sure the input is a number
     results = []
     while True:
         try:
-            numberOfResults = int(input("\nYou will be entering the results now. \nPlease enter the number of results (max 10): "))
-            if 0 <= numberOfResults <=10:
+            numberOfResults = int(input("\nYou will be entering the results now. \nPlease enter the number of results (min 3, max 10): "))
+            if 3 <= numberOfResults <=10:
                 for i in range(numberOfResults):
                     while True:
                         try:
