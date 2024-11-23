@@ -2,26 +2,28 @@
 
 ## Simulacion de un proyecto de investigacion cientifica en python 🐍
 
-##### 1. **primero hemos importado las libreria de datetime y statistics**
+### 1. **primero hemos importado las libreria de datetime y statistics**
 
-##### 2.**Luego creamos una clase para ir guardando los experimentos con sus atributos, como el nombre la fecha, la categoria y resultados.**
+### 2.**Luego creamos una clase para ir guardando los experimentos con sus atributos, como el nombre la fecha, la categoria y resultados.** 📅
 
-#### 3. Luego creamos las funciones de:
+### 3. Luego creamos las funciones de: 🔍
 
-###### **addExperiment() ** --> para añadir experimentos
+##### **addExperiment() ** --> para añadir experimentos
 
-###### printExperiments()
+--aca podemos explicar un poco mas para cada funcion.
 
-###### displayExperimentsName()
+##### printExperiments() -- para que nos muestre los experimentos
 
-###### removeExperiment()
+##### displayExperimentsName() -- Esta funcion nos va a servir para llamarla desde otra funcion cuando necesitemos mostrar el numero y los experimentos que llevamos
 
-###### calculateStatistics()
+##### removeExperiment() -- Esta funcion nos va a eliminar el experimento que queramos
 
-###### compareExperiments()
+##### calculateStatistics() -- nos va a calcular el promedio de los resultados, los maximos y los minimos
 
-###### generateReport()
+##### compareExperiments() -- comparamos los experimentos
 
-###### userMenu()
+##### generateReport() -- generamos el reposte de los experimentos y lo guardamos en un archivo de texto
 
-###### main()
+##### userMenu() -- aca mostramos al usuario el menu de opciones
+
+##### main() -- llamamos al menu
