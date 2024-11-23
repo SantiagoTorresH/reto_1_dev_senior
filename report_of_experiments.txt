@@ -1,35 +1,24 @@
-
-
 -------------------
 LIST OF EXPERIMENTS
 -------------------
 
 ----- Experiment #: 1 -----
-Name: Test1
-Date: 2024-02-01 00:00:00
-Category: Biology
-Results: [3.0, 4.0, 5.0]
-The average is: 4.0
-The minimun value is: 3.0
-The maximum value is: 5.0
+Name: exper1
+Date: 2022-02-02
+Category: Physics
+Results: [1.0, 2.0, 3.0, 4.0]
+The average is: 2.50
+The minimum value is: 1.0
+The maximum value is: 4.0
 
 ----- Experiment #: 2 -----
-Name: Test 2
-Date: 2024-03-02 00:00:00
-Category: Physics
-Results: [1.5, 6.3, 2.3]
-The average is: 3.3666666666666667
-The minimun value is: 1.5
-The maximum value is: 6.3
-
------ Experiment #: 3 -----
-Name: Test 3
-Date: 2024-04-03 00:00:00
-Category: Chemistry
-Results: [6.0, 10.0, 0.5]
-The average is: 5.5
-The minimun value is: 0.5
-The maximum value is: 10.0
+Name: expe2
+Date: 2014-01-02
+Category: Biology
+Results: [3.0, 2.0, 1.0]
+The average is: 2.00
+The minimum value is: 1.0
+The maximum value is: 3.0
 
 -------------------------------
 COMPARISION BETWEEN EXPERIMENTS
@@ -38,15 +27,15 @@ COMPARISION BETWEEN EXPERIMENTS
 --------------------
 Comparision of mean:
 --------------------
-Highest average: Experiment #3 with a value of 5.5
-Lowest average: Experiment #2 with the value of 3.3666666666666667
+Highest average: Experiment #1 with a value of 2.50
+Lowest average: Experiment #2 with the value of 2.00
 ----------------------------
-Comparision of minium value:
+Comparision of minimum value:
 ----------------------------
-Highest Min Value: Experiment #1 with a value of 3.0
-Lowest Min Value: Experiment #3 with the value of 0.5
+Highest Min Value: Experiment #1 with a value of 1.0
+Lowest Min Value: Experiment #1 with the value of 1.0
 -----------------------------
 Comparision of maximum value:
 -----------------------------
-Highest Max Value: Experiment #3 with a value of 10.0
-Lowest Max Value: Experiment #1 with the value of 5.0
+Highest Max Value: Experiment #1 with a value of 4.0
+Lowest Max Value: Experiment #2 with the value of 3.0

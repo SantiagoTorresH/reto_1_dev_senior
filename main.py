@@ -374,5 +374,5 @@ def main():
             print("\n")
 
 
-if __name__ == "__main__":  # es lo mismo al main pero mas avanzado, 
+if __name__ == "__main__":  
     main()
