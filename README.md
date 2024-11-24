@@ -54,7 +54,7 @@ El programa le permite al usuario realizar un análisis básico de los datos exp
 
 Para generar el reporte, se utiliza la sigueinte función:  
 
-* ```calculateStatistics```: El programa le permite al usuario generar un archivo .txt en donde se muestre la lista de los experimentos registrados. Además, el reporte incluye una comparación del análisis de los datos de todos los resultados, especificando qué experimento tuvo el promedio más alto y más bajo, el valor mínimo más alto y más bajo, y el valor máximo más alto y más bajo.
+* ```generateReport```: El programa le permite al usuario generar un archivo .txt en donde se muestre la lista de los experimentos registrados. Además, el reporte incluye una comparación del análisis de los datos de todos los resultados, especificando qué experimento tuvo el promedio más alto y más bajo, el valor mínimo más alto y más bajo, y el valor máximo más alto y más bajo.
 
 A continuación, se presenta un ejemplo de cómo es el resultado de dicho reporte. 
 
