@@ -85,7 +85,7 @@ def printExperiments(listOfExperiments):
         input("\nPress 'Enter' to continue...")
         return
 
-    print("----------------------------------------------------")
+    print("\n----------------------------------------------------")
     print("This is the list of experiments you have documented.")
     
     for i, thisExperiment in enumerate(listOfExperiments, start=1):
@@ -225,6 +225,8 @@ def compareExperiments(listOfExperiments):
                 if len(set(listToCompare))==1:
                     print("\n*** Attention ***")
                     print("You can't stop. Please enter another experiment. \nThere is only one experiment in the list to compare.")
+                    print(f"\nExperiments to compare: {set(listToCompare)}")
+                    print("\n")
                     print("\n")
                     continue
                 elif len(set(listToCompare)) == 0:
@@ -326,6 +328,17 @@ def generateReport(listOfExperiments):
     print("Report successfully generated.")
     input("\nPress Enter to continue...")
 
+# This function will displau a welcome message
+def welcomeMessage():
+    print("-------------------------------------------------")
+    print("                     Welcome:                    ")
+    print("           Scientific Research Project           ")
+    print("\n")
+    print("With this console application you'll be able to \nstore the results collected from your \nchemistry, physics and biology experiments.")
+    print("\n")
+    print("Developed by: Santiago Torres and Lindsey Acourtt")
+    print("-------------------------------------------------\n")
+
 # This function will display the user menu
 def userMenu():
     print("===Main Menu====")
@@ -348,10 +361,11 @@ def userMenu():
 def main():
     
     listOfExperiments=[]
+    welcomeMessage()
 
     while True:
         userMenu()
-        option = input("Select an option: ")
+        option = input("\nSelect an option: ")
 
         if option == "1":
             addExperiment(listOfExperiments)

@@ -6,6 +6,12 @@ El presente repositorio corresponde al desarrollo de las actividades propuestas 
 
 El objetivo de este proyecto es desarrollar una aplicación basada en consola, enfocada en la recopilación, análisis y manipulación de datos científicos.
 
+### Uso.
+
+Esta aplicación se desarrolló con Python versión 3.13.0. Las liberías usadas están en la sección de librerías. 
+
+Para hacer uso de la aplicación ejecuta el archivo "main.py".
+
 ### Menú principal. 
 
 Una vez el usuario inicia el programa, se le presentará el siguiente menú. El usuario debe ingresar el número de la función que desea llevar a cabo. Si ingresa algo diferente al número de una de las funciones disponibles, el usuario tendrá que intentarlo de nuevo. 
@@ -50,7 +56,7 @@ El programa le permite al usuario realizar un análisis básico de los datos exp
 * ```calculateStatistics```: El usuario puede escoger un experimento de entre la lista de experimentos registrados para calcular el promedio de los datos, el valor mínimo, y el valor máximo. Si no hay experimentos registrados, se le indicará al usuario. Al igual que con la función eliminar, para seleccionar un experimento para analizarlo, el usuario debe ingresar el número del experimento en la lista de experimentos registrados. Si el usuario no recuerda cuál es el número en la lista del experimento a analizar, tiene la opción de visualizar una lista resumida del número y el nombre de los experimentos disponibles.
 * ```compareExperiments```: El usuario puede escoger dos o más experimentos. A cada uno se le calcula el promedio, el valor mínimo y el valor máximo, luego el programa muestra cuál de los experimentos seleccionados para comparar tiene mayor y menor promedio, mayor y menor valor mínimo y mayor y menos valor máximo. Si no hay experimentos registrados, esto se le indicará al usuario, y si solo hay un experimento, se le indicará también, avisando que no hay experimentos suficientes para realizar una comparación. Similar que con las funciones eliminar y calcular estadísticas, el usuario debe ingresar el número del experimento en la lista para escoger qué experimentos quiere comparar, si no lo recuerda, tiene la opción de mostrar la lista resumida de los experimentos. A medida que el usuario va ingresando los números, se va mostrando una lista de los experimentos seleccionados. 
 
-#### 3. Generación de reporte
+#### 3. Generación de reporte.
 
 Para generar el reporte, se utiliza la sigueinte función:  
 
@@ -138,11 +144,12 @@ Highest Max Value: Experiment #5 with a value of 4400.0
 Lowest Max Value: Experiment #3 with the value of 2.6
 ```
 
-#### 4. Generación de reporte
+#### 4. Otras funciones.
 
 Funciones secundarias. Se utilizan las siguientes funciones para apoyar el desarrollo del programa:
 
 * ```displayExperimentsName```: Es similar a ```printExperiments```, pero solo imprime el nombre de los experimentos registrados y su número asignado en la lista. Se usa en medio de las operaciones de eliminación, análisis y comparación, para recordarle al usuario cuáles son los experimentos disponibles en caso de que no recuerde cuál es el experimento que desea seleccionar.
+* ```welcomeMessage```: Imprime un mensaje de bienvenida cuando se inicia la aplicación.
 * ```userMenu```: Imprime el menú de opciones al usuario, es el menú principal.
 
 ### Librerías usadas
